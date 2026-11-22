@@ -144,25 +144,32 @@ export default function Hero() {
 
         {/* Right — portrait */}
         <div className="hero-right reveal" style={{ transitionDelay: '0.1s' }}>
-          {/* Location badge — ABOVE portrait, not touching */}
-          <div className="hero-location-badge">
-            <i className="fa-solid fa-location-dot" style={{ color: '#2563EB', fontSize: '0.95rem' }} />
-            <span>Chennai, Tamil Nadu</span>
-          </div>
 
-          {/* Portrait card */}
-          <div className="hero-portrait-card">
-            <img
-              src="/profile.png"
-              alt={`${personal.name} — profile`}
-              onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex'; }}
-            />
-            <div className="hero-portrait-fallback" style={{ display: 'none' }}>RN²</div>
-          </div>
+          {/* Wrapper so badge can position relative to portrait without being clipped */}
+          <div className="hero-portrait-wrap">
 
-          <div className="hero-float-card card-bottom">
-            <i className="fa-solid fa-graduation-cap" />
-            CGPA {personal.cgpa} · SRMIST
+            {/* Portrait image card */}
+            <div className="hero-portrait-card">
+              <img
+                src="/profile.png"
+                alt={`${personal.name} — profile`}
+                onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex'; }}
+              />
+              <div className="hero-portrait-fallback" style={{ display: 'none' }}>RN²</div>
+            </div>
+
+            {/* Location badge — top-RIGHT corner of portrait, fully outside overflow */}
+            <div className="hero-float-card card-top">
+              <i className="fa-solid fa-location-dot" style={{ color: '#2563EB' }} />
+              <span>Chennai, Tamil Nadu</span>
+            </div>
+
+            {/* CGPA badge — bottom-LEFT corner of portrait */}
+            <div className="hero-float-card card-bottom">
+              <i className="fa-solid fa-graduation-cap" style={{ color: '#2563EB' }} />
+              <span>CGPA {personal.cgpa} · SRMIST</span>
+            </div>
+
           </div>
         </div>
       </div>
