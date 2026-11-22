@@ -1,0 +1,167 @@
+/* ================================================================
+   NAVBAR — Glassmorphic sticky header
+   ================================================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 64px;
+  background: rgba(249,249,247,0.80);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.navbar.scrolled {
+  background: rgba(255,255,255,0.92);
+  border-bottom-color: #E5E4E0;
+  box-shadow: 0 1px 24px rgba(0,0,0,0.05);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo:hover .logo-mark { transform: scale(0.94); }
+.logo-mark {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: #0A0A0A;
+  color: #F9F9F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  transition: transform 0.2s cubic-bezier(0.16,1,0.3,1);
+  flex-shrink: 0;
+}
+.logo-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0A0A0A;
+  letter-spacing: -0.03em;
+}
+
+/* Desktop nav */
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #737373;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: -0.01em;
+  display: block;
+}
+.nav-link:hover { color: #0A0A0A; background: rgba(0,0,0,0.05); }
+.nav-link.active { color: #0A0A0A; background: rgba(0,0,0,0.06); }
+
+/* CTA button */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.1rem;
+  background: #0A0A0A;
+  color: #F9F9F7;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-left: 0.75rem;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.nav-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: inherit;
+}
+.nav-cta:hover::after { opacity: 1; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,0.25); }
+.nav-cta span { position: relative; z-index: 1; }
+
+/* Mobile */
+.mobile-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 9px;
+  border: 1px solid #E5E4E0;
+  color: #0A0A0A;
+  font-size: 1rem;
+  background: transparent;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.mobile-toggle:hover { background: rgba(0,0,0,0.05); }
+
+.mobile-drawer {
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E4E0;
+  z-index: 999;
+  transform: translateY(-110%);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s;
+  padding: 1.25rem 1.5rem 1.75rem;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+.mobile-drawer.open { transform: translateY(0); opacity: 1; }
+.mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
+.mobile-nav-link {
+  display: block;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #3D3D3D;
+  border-radius: 10px;
+  transition: color 0.2s, background 0.2s;
+}
+.mobile-nav-link:hover, .mobile-nav-link.active { color: #0A0A0A; background: #F4F4F2; }
+.mobile-nav-link.cta-mobile {
+  margin-top: 0.75rem;
+  background: #0A0A0A;
+  color: #F9F9F7;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 999px;
+}
+.mobile-nav-link.cta-mobile:hover { background: #2563EB; }
+.mobile-backdrop {
+  position: fixed; inset: 0; z-index: 998; background: transparent;
+}
+
+@media (max-width: 860px) {
+  .nav-links, .nav-cta { display: none; }
+  .mobile-toggle { display: flex; }
+}
+@media (max-width: 768px) { .nav-inner { padding: 0 1.25rem; } }
