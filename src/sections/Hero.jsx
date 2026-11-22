@@ -144,11 +144,13 @@ export default function Hero() {
 
         {/* Right — portrait */}
         <div className="hero-right reveal" style={{ transitionDelay: '0.1s' }}>
-          <div className="hero-float-card card-top">
-            <i className="fa-solid fa-location-dot" style={{ color: '#2563EB', fontSize: '1rem' }} />
+          {/* Location badge — ABOVE portrait, not touching */}
+          <div className="hero-location-badge">
+            <i className="fa-solid fa-location-dot" style={{ color: '#2563EB', fontSize: '0.95rem' }} />
             <span>Chennai, Tamil Nadu</span>
           </div>
 
+          {/* Portrait card */}
           <div className="hero-portrait-card">
             <img
               src="/profile.png"
